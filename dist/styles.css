@@ -48,6 +48,10 @@ body {
   transform: scale(.9) translateY(5px);
 }
 
+#add-button:focus {
+  outline: none;
+}
+
 header {
   align-items: center;
   background-image: linear-gradient(to right, var(--red) 30%, var(--yellow));
@@ -104,6 +108,15 @@ nav {
   height: 30px;
   margin: 0 10px;
   width: 30px;
+}
+
+#add-task-modal {
+  border: 2px solid var(--grey);
+  background-color: var(--white);
+  border-radius: 20px;
+  height: 400px;
+  margin: auto;
+  width: clamp(400px,70%,700px);
 }
 
 /*Main content*/

@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Tasks_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Tasks.js */ \"./src/modules/Tasks.js\");\n\n\n//# sourceURL=webpack://todo_list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Tasks_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Tasks.js */ \"./src/modules/Tasks.js\");\n/* harmony import */ var _modules_UI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/UI.js */ \"./src/modules/UI.js\");\n\r\n\r\n\r\n(0,_modules_UI_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n//# sourceURL=webpack://todo_list/./src/index.js?");
 
 /***/ }),
 
@@ -27,6 +27,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ task)\n/* harmony export */ });\nclass task {\r\n  constructor(name, date, priority){\r\n    this._name = name;\r\n    this._date = date;\r\n    this.priority = priority;\r\n  }\r\n\r\n  get name() {\r\n    return this._name;\r\n  }\r\n\r\n  set name(value) {\r\n    this._name = value;\r\n  }\r\n}\n\n//# sourceURL=webpack://todo_list/./src/modules/Tasks.js?");
+
+/***/ }),
+
+/***/ "./src/modules/UI.js":
+/*!***************************!*\
+  !*** ./src/modules/UI.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ eventListener)\n/* harmony export */ });\nconst addBtn = document.querySelector('#add-button');\r\nconst modalWindow = document.querySelector('#add-task-modal');\r\n\r\nfunction eventListener() {addBtn.addEventListener('click',() => {\r\nmodalWindow.showModal();\r\n});}\n\n//# sourceURL=webpack://todo_list/./src/modules/UI.js?");
 
 /***/ })
 
