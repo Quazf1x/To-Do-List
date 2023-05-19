@@ -9,11 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+  <script defer type="module" src="main.js"></script>
   <title>To Do List</title>
 </head>
 <body>
   <div id="wrapper">
+    <button id="add-button">+</button>
    <header>
     <div>
       <img src="../src/img/Logo.svg">
@@ -40,8 +41,22 @@
       </li>
     </ul>
   </nav>  
-    <main class="main-wrapper"> 
-    </main>
+    <div id="content"> 
+      <main class="main-wrapper">
+        <h1 class="page-name">Today</h1>
+        <ul>
+          <li>
+            <span>
+              Make breakfast
+            </span>
+            <div>
+              <img src="../src/img/Edit.svg">
+              <img src="../src/img/Delete.svg">
+            </div>
+          </li>
+        </ul>
+      </main>
+    </div>
   </div>
 </body>
 </html>
