@@ -1,4 +1,15 @@
+export let projectList = [
+  {
+    name: 'Default Project',
+    date: '21-05-2023',
+    description: 'lol :3',
+    priority: 'Medium',
+    tasks: []
+  }
+];
+
 export default class project {
+
   constructor(name, description, date, priority){
     this._name = name;
     this._date = date;

@@ -1,4 +1,4 @@
 import task from './modules/Tasks.js';
-import { addEventListeners } from './modules/UI.js';
+import UI from './modules/UI.js';
 
-addEventListeners();
+UI.addEventListeners();
