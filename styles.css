@@ -5,7 +5,7 @@
   --black: #292f36;
   --yellow: #ffe66d;
   --grey:#ebf3eb;
-  --car:#8d938d;
+  --gradient: linear-gradient(to right, var(--red) 30%, var(--yellow));
 
   --header-height: 80px;
 }
@@ -21,7 +21,7 @@ body {
   height: 100svh;
 }
 
-#wrapper {
+#page-wrapper {
   display: grid;
   grid-template: 80px 1fr/ 250px 1fr;
   position: relative;
@@ -54,7 +54,7 @@ body {
 
 header {
   align-items: center;
-  background-image: linear-gradient(to right, var(--red) 30%, var(--yellow));
+  background-image: var(--gradient);
   color: var(--white);
   display: flex;
   grid-column: 1/3;
@@ -110,6 +110,8 @@ nav {
   width: 30px;
 }
 
+/*Dialog*/
+
 #add-task-modal {
   border: 2px solid var(--grey);
   background-color: var(--white);
@@ -117,6 +119,64 @@ nav {
   height: 400px;
   margin: auto;
   width: clamp(400px,70%,700px);
+}
+#dialog-wrapper {
+  display: grid;
+  grid-template: 70px 1fr/ 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.dialog-header {
+  background-image: var(--gradient);
+  grid-column: 1/3;
+  color: var(--white);
+  padding: 20px;
+}
+
+#dialog-wrapper form {
+  padding: 10px 30px;
+}
+
+#dialog-wrapper input, #dialog-wrapper select {
+  border: 2px solid var(--grey);
+  border-radius: 20px;
+  width: 50%;
+  padding: 8px;
+}
+
+#dialog-wrapper select {
+  width: 20%;
+}
+
+#dialog-wrapper input:focus, #dialog-wrapper select:focus {
+  outline: none;
+  border: 2px solid var(--blue);
+}
+
+#dialog-wrapper input, #dialog-wrapper label {
+  display: block;
+  margin: 5px 0;
+}
+
+.form-submit-button {
+  border: none;
+  background-color: var(--red);
+  border-radius: 20px;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 20px 10px;
+  padding: 10px 20px;
+  transition: all .2s;
+}
+
+.form-submit-button:hover {
+  opacity: .8;
+}
+
+.form-submit-button:active {
+  transform: scale(.9);
 }
 
 /*Main content*/

@@ -17,8 +17,30 @@
   <title>To Do List</title>
 </head>
 <body>
-  <div id="wrapper">
+  <div id="page-wrapper">
     <dialog id="add-task-modal">
+      <div id="dialog-wrapper">
+        <h2 class="dialog-header">Add New element</h2>
+      <form id="add-task-form" method="dialog">
+        <div>
+          <label for="form-name">Name</label>
+          <input type="text" id="form-name" required>
+      </div>
+      <div>
+        <label for="form-date">Date</label>
+        <input type="date" id="form-date" required>
+      </div>
+      <div>
+        <label for="form-priorty">Priority</label>
+        <select id="form-priorty">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+        <button type="submit" class="form-submit-button">Add</button>
+      </form>
+      </div>
     </dialog>
     <button id="add-button">+</button>
    <header>
