@@ -159,7 +159,7 @@ nav {
   margin: 5px 0;
 }
 
-.form-submit-button {
+#form-submit-button {
   border: none;
   background-color: var(--red);
   border-radius: 20px;
@@ -171,11 +171,11 @@ nav {
   transition: all .2s;
 }
 
-.form-submit-button:hover {
+#form-submit-button:hover {
   opacity: .8;
 }
 
-.form-submit-button:active {
+#form-submit-button:active {
   transform: scale(.9);
 }
 
@@ -192,6 +192,10 @@ nav {
 
 .main-wrapper {
   height: 100%;
+}
+
+.main-wrapper i {
+  margin-right: 5px;
 }
 
 .main-wrapper ul li {
