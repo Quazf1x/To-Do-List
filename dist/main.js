@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Tasks_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Tasks.js */ \"./src/modules/Tasks.js\");\n/* harmony import */ var _modules_UI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/UI.js */ \"./src/modules/UI.js\");\n\r\n\r\n\r\n(0,_modules_UI_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n//# sourceURL=webpack://todo_list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Tasks_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Tasks.js */ \"./src/modules/Tasks.js\");\n/* harmony import */ var _modules_UI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/UI.js */ \"./src/modules/UI.js\");\n\r\n\r\n\r\n(0,_modules_UI_js__WEBPACK_IMPORTED_MODULE_1__.addEventListeners)();\n\n//# sourceURL=webpack://todo_list/./src/index.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ eventListener)\n/* harmony export */ });\nconst addBtn = document.querySelector('#add-button');\r\nconst modalWindow = document.querySelector('#add-task-modal');\r\n\r\nfunction eventListener() {addBtn.addEventListener('click',() => {\r\nmodalWindow.showModal();\r\n});}\n\n//# sourceURL=webpack://todo_list/./src/modules/UI.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   addEventListeners: () => (/* binding */ addEventListeners),\n/* harmony export */   \"default\": () => (/* binding */ addEventListeners)\n/* harmony export */ });\nfunction addEventListeners() {\r\n  const addBtn = document.querySelector('#add-button');\r\n  const modalWindow = document.querySelector('#add-task-modal');\r\n\r\n  addBtn.addEventListener('click',() => {\r\n    modalWindow.showModal();\r\n  });\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://todo_list/./src/modules/UI.js?");
 
 /***/ })
 
