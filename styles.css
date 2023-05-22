@@ -182,7 +182,7 @@ nav {
 /*Main content*/
 
 #content {
-  margin: 20px 200px;
+  margin: 20px 10vw;
 }
 
 .page-name {
@@ -199,7 +199,7 @@ nav {
 }
 
 .main-wrapper ul li {
-  border-left: 3px solid #ff0000;
+  border-left: 3px solid;
   border-bottom:2px solid var(--grey);
   cursor: pointer;
   display: flex;
@@ -215,4 +215,8 @@ nav {
 .main-wrapper ul li img {
   height: 22px;
   width: 22px;
+}
+
+.crossed-words {
+  text-decoration: Line-through;
 }
