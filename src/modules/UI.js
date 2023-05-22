@@ -30,6 +30,24 @@ export default class UI {
     taskDeleteIcon.setAttribute('src', '../src/img/Delete.svg');
     taskIconsDiv.append(taskEditIcon, taskDeleteIcon);
     taskNameDiv.append(taskIcon, taskSpan);
+
+    taskIcon.addEventListener('click',() => { 
+      taskIcon.classList.toggle('fa-circle-check');
+      taskIcon.classList.toggle('fa-circle');
+      taskSpan.classList.toggle('crossed-words');
+     });
+
+     switch(task.priority){
+      case 'Low':
+        taskLI.style.borderLeftColor = '#19e61d';
+        break;
+      case 'Medium':
+        taskLI.style.borderLeftColor = '#ff8c12';
+        break;
+      case 'High':
+        taskLI.style.borderLeftColor = '#ff0000';
+        break;
+     };
     
     taskLI.append(taskNameDiv, taskIconsDiv);
     pageUL.appendChild(taskLI);
@@ -48,16 +66,15 @@ export default class UI {
   static addEventListeners(){
     const addBtn = document.querySelector('#add-button');
     const modalWindow = document.querySelector('#add-task-modal');
-    const submitFormBtn = document.querySelector('#form-submit-button');
+    const taskForm = document.querySelector('#add-task-form');
 
   addBtn.addEventListener('click',() => {
     modalWindow.showModal();
   });
 
-  submitFormBtn.addEventListener('click',(e) => {
+  taskForm.addEventListener('submit',(e) => {
     this.createNewTask();
   });
-
   }
 
 };

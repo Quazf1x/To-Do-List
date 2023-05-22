@@ -16,12 +16,8 @@ export default class task {
   }
 };
 
-
-
 export function addTask(name, date, priority, projectIndex) {
   const newTask = new task(name, date, priority);
   projectList[projectIndex].tasks.push(newTask);
-  
-  console.log(projectList);
   return newTask;
 }
