@@ -1,12 +1,8 @@
-export let projectList = [
-  {
-    name: 'Default Project',
-    date: '21-05-2023',
-    description: 'lol :3',
-    priority: 'Medium',
-    tasks: []
-  }
-];
+export let projectList = []
+export let currrentProjectNum = 0;
+export function createFirstProject() { //dummy function,remove later
+  projectList.push(new project('Default Project', '21-05-2023', 'lol :3', 'Medium', []));
+};
 
 export default class project {
 
@@ -25,4 +21,10 @@ export default class project {
   set name(value) {
     this._name = value;
   }
+
+};
+
+export function removeTask(project, taskIndex) {
+  console.log(project);
+  return project.tasks.splice(taskIndex, 1);
 }

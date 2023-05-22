@@ -3,7 +3,7 @@ import { projectList } from './Projects.js';
 export default class task {
   constructor(name, date, priority){
     this._name = name;
-    this._date = date;
+    this.date = date;
     this.priority = priority;
   }
 

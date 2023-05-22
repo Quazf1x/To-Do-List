@@ -1,3 +1,4 @@
+import { projectList, removeTask } from "./Projects";
 import task, {addTask} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
@@ -23,18 +24,24 @@ export default class UI {
     const taskIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null); 
     const taskSpan = this.createHtmlElement('span', null, null, task.name); 
     const taskIconsDiv = this.createHtmlElement('div', null, null, null);
-    const taskEditIcon = this.createHtmlElement('img', null, null, null);
+    const taskDate = this.createHtmlElement('span', null, null, task.date);
     const taskDeleteIcon = this.createHtmlElement('img', null, null, null);
 
-    taskEditIcon.setAttribute('src', '../src/img/Edit.svg');
     taskDeleteIcon.setAttribute('src', '../src/img/Delete.svg');
-    taskIconsDiv.append(taskEditIcon, taskDeleteIcon);
+    taskIconsDiv.append(taskDate, taskDeleteIcon);
     taskNameDiv.append(taskIcon, taskSpan);
 
     taskIcon.addEventListener('click',() => { 
       taskIcon.classList.toggle('fa-circle-check');
       taskIcon.classList.toggle('fa-circle');
       taskSpan.classList.toggle('crossed-words');
+     });
+
+     taskDeleteIcon.addEventListener('click', () => {
+      pageUL.removeChild(taskLI);
+      console.log(projectList);
+      removeTask(projectList[0], task.index);
+      console.log(projectList);
      });
 
      switch(task.priority){
@@ -69,6 +76,7 @@ export default class UI {
     const taskForm = document.querySelector('#add-task-form');
 
   addBtn.addEventListener('click',() => {
+    //taskForm.reset(); UNCOMMENT LATER!!!!!!!!!!!
     modalWindow.showModal();
   });
 
