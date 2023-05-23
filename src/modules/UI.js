@@ -1,8 +1,9 @@
-import { projectList, removeTask } from "./Projects";
+import { projectList, findTask, currrentProject } from "./Projects";
 import task, {addTask} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
 const mainWrapper = document.querySelector('.main-wrapper');
+const pageUL = document.querySelector('#content ul');
 
 export default class UI {
 
@@ -18,7 +19,7 @@ export default class UI {
   }
 
   static renderTask(task) {
-    const pageUL = document.querySelector('#content ul');
+    
     const taskNameDiv = this.createHtmlElement('div', null, null, null);
     const taskLI = this.createHtmlElement('li', null, null, null); 
     const taskIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null); 
@@ -39,7 +40,7 @@ export default class UI {
 
      taskDeleteIcon.addEventListener('click', () => {
       pageUL.removeChild(taskLI);
-      removeTask(projectList[0], task.name);
+      findTask(currrentProject, task.name, true);
      });
 
      switch(task.priority){
@@ -59,14 +60,26 @@ export default class UI {
     mainWrapper.appendChild(pageUL);
   }
 
-  static createNewTask() {
+  static clearMainPage() {
+    pageUL.innerHTML = '';
+  }
+
+  static renderTasksPage(project) {
+    this.clearMainPage();
+    project.tasks.forEach(task => {
+      this.renderTask(task);
+    });
+  }
+
+  static getDataFromUser() {
     const taskName = document.querySelector('#form-name').value;
+    if(findTask(currrentProject, taskName, false)) return null;
+
     const taskDate = document.querySelector('#form-date').value;
     const taskPriority = document.querySelector('#form-priorty').value;
-    const newTask = addTask(taskName, taskDate,taskPriority, 0);
-
-    this.renderTask(newTask);
-  }
+    const newTask = addTask(taskName, taskDate, taskPriority, 0);
+    return newTask;
+  };
   
   static addEventListeners(){
     const addBtn = document.querySelector('#add-button');
@@ -79,7 +92,12 @@ export default class UI {
   });
 
   taskForm.addEventListener('submit',(e) => {
-    this.createNewTask();
+    let userData = this.getDataFromUser();
+    if(userData == null) {
+      alert('The task with this name already exists.');
+      return;
+    }
+    this.renderTasksPage(currrentProject);
   });
   }
 

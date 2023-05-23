@@ -1,7 +1,9 @@
 export let projectList = []
-export let currrentProjectNum = 0;
+export let currrentProject;
+
 export function createFirstProject() { //dummy function,remove later
   projectList.push(new project('Default Project', '21-05-2023', 'lol :3', 'Medium', []));
+  currrentProject = projectList[0];
 };
 
 export default class project {
@@ -24,9 +26,14 @@ export default class project {
 
 };
 
-export function removeTask(project, taskName) {
+export function findTask(project, taskName, shouldDelete) {
   for (let task of project.tasks){
     if ( task.name == taskName)
-    return project.tasks.splice(project.tasks.indexOf(task), 1);
+    {
+      if(shouldDelete) {
+        return project.tasks.splice(project.tasks.indexOf(task), 1);
+      }
+      else return true;
+    }
   }
-}
+};
