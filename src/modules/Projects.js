@@ -24,7 +24,9 @@ export default class project {
 
 };
 
-export function removeTask(project, taskIndex) {
-  console.log(project);
-  return project.tasks.splice(taskIndex, 1);
+export function removeTask(project, taskName) {
+  for (let task of project.tasks){
+    if ( task.name == taskName)
+    return project.tasks.splice(project.tasks.indexOf(task), 1);
+  }
 }

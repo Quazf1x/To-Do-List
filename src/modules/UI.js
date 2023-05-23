@@ -39,9 +39,7 @@ export default class UI {
 
      taskDeleteIcon.addEventListener('click', () => {
       pageUL.removeChild(taskLI);
-      console.log(projectList);
-      removeTask(projectList[0], task.index);
-      console.log(projectList);
+      removeTask(projectList[0], task.name);
      });
 
      switch(task.priority){
