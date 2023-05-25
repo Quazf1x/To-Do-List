@@ -39,8 +39,9 @@ export default class UI {
      });
 
      taskDeleteIcon.addEventListener('click', () => {
-      pageUL.removeChild(taskLI);
+      //pageUL.removeChild(taskLI); - the old solution. thought that re-rendering from project tasks array each time would be better(?)
       findTask(currrentProject, task.name, true);
+      this.renderTasksPage(currrentProject);
      });
 
      switch(task.priority){
@@ -72,18 +73,21 @@ export default class UI {
   }
 
   static getDataFromUser() {
-    const taskName = document.querySelector('#form-name').value;
+    const taskName = document.querySelector('#form-task-name').value;
     if(findTask(currrentProject, taskName, false)) return null;
 
-    const taskDate = document.querySelector('#form-date').value;
-    const taskPriority = document.querySelector('#form-priorty').value;
+    const taskDate = document.querySelector('#form-task-date').value;
+    const taskPriority = document.querySelector('#form-task-priorty').value;
     const newTask = addTask(taskName, taskDate, taskPriority, 0);
     return newTask;
   };
   
   static addEventListeners(){
-    const addBtn = document.querySelector('#add-button');
-    const modalWindow = document.querySelector('#add-task-modal');
+    const addTaskBtn = document.querySelector('#add-button');
+    const addProjectBtn = document.querySelector('#new-project-button');
+
+    const modalProjectWindow = document.querySelector('#add-project-modal');
+    const modalTaskWindow = document.querySelector('#add-task-modal');
     const taskForm = document.querySelector('#add-task-form');
     const projectsSubmenu = document.querySelector('#project-submenu');
     const projectCategory = document.querySelector('#project-category');
@@ -92,10 +96,15 @@ export default class UI {
       projectsSubmenu.classList.toggle('hidden');
     });
 
-    addBtn.addEventListener('click',() => {
+    addTaskBtn.addEventListener('click',() => {
       //taskForm.reset(); UNCOMMENT LATER!!!!!!!!!!!
-      modalWindow.showModal();
+      modalTaskWindow.showModal();
     });
+
+    addProjectBtn.addEventListener('click', () => {
+      //taskForm.reset();
+      modalProjectWindow.showModal();
+    })
 
     taskForm.addEventListener('submit',(e) => {
       let userData = this.getDataFromUser();
