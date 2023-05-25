@@ -157,7 +157,7 @@ nav {
 
 /*Dialog*/
 
-#add-task-modal {
+.add-modal {
   border: 2px solid var(--grey);
   background-color: var(--white);
   border-radius: 20px;
@@ -165,7 +165,12 @@ nav {
   margin: auto;
   width: clamp(400px,70%,700px);
 }
-#dialog-wrapper {
+
+#add-project-modal {
+  height: 430px;
+}
+
+.dialog-wrapper {
   display: grid;
   grid-template: 70px 1fr/ 1fr;
   height: 100%;
@@ -179,32 +184,32 @@ nav {
   padding: 20px;
 }
 
-#dialog-wrapper form {
+.dialog-wrapper form {
   padding: 10px 30px;
 }
 
-#dialog-wrapper input, #dialog-wrapper select {
+.dialog-wrapper input, .dialog-wrapper select {
   border: 2px solid var(--grey);
   border-radius: 20px;
   width: 50%;
   padding: 8px;
 }
 
-#dialog-wrapper select {
+.dialog-wrapper select {
   width: 20%;
 }
 
-#dialog-wrapper input:focus, #dialog-wrapper select:focus {
+.dialog-wrapper input:focus, .dialog-wrapper select:focus {
   outline: none;
   border: 2px solid var(--blue);
 }
 
-#dialog-wrapper input, #dialog-wrapper label {
+.dialog-wrapper input, .dialog-wrapper label {
   display: block;
   margin: 5px 0;
 }
 
-#form-submit-button {
+.form-button {
   border: none;
   background-color: var(--red);
   border-radius: 20px;
@@ -216,11 +221,11 @@ nav {
   transition: all .2s;
 }
 
-#form-submit-button:hover {
+.form-button:hover {
   opacity: .8;
 }
 
-#form-submit-button:active {
+.form-button:active {
   transform: scale(.9);
 }
 /*Main content*/

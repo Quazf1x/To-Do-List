@@ -21,30 +21,60 @@
 
     <!-- Dialogs-->
 
-    <dialog id="add-task-modal">
-      <div id="dialog-wrapper">
-        <h2 class="dialog-header">Add New element</h2>
+    <dialog class="add-modal" id="add-task-modal">
+      <div class="dialog-wrapper">
+        <h2 class="dialog-header">Add New Task</h2>
       <form id="add-task-form" method="dialog">
         <div>
-          <label for="form-name">Name</label>
-          <input type="text" id="form-name" required>
+          <label for="form-task-name">Name</label>
+          <input type="text" id="form-task-name" required>
       </div>
       <div>
-        <label for="form-date">Date</label>
-        <input type="date" id="form-date" required>
+        <label for="form-task-date">Date</label>
+        <input type="date" id="form-task-date" required>
       </div>
       <div>
-        <label for="form-priorty">Priority</label>
-        <select id="form-priorty">
+        <label for="form-task-priorty">Priority</label>
+        <select id="form-task-priorty">
           <option>Low</option>
           <option>Medium</option>
           <option>High</option>
         </select>
       </div>
-        <button type="submit" id="form-submit-button">Add</button>
+        <button type="submit" class="form-button" id="form-submit-button">Add</button>
       </form>
       </div>
     </dialog>
+
+    <dialog class="add-modal" id="add-project-modal">
+      <div class="dialog-wrapper">
+        <h2 class="dialog-header">Add New Project</h2>
+      <form id="add-project-form" method="dialog">
+        <div>
+          <label for="form-project-name">Name</label>
+          <input type="text" id="form-project-name" required>
+      </div>
+      <div>
+        <label for="form-project-description">Description</label>
+        <input type="text" id="form-project-description" required>
+    </div>
+      <div>
+        <label for="form-project-date">Date</label>
+        <input type="date" id="form-project-date" required>
+      </div>
+      <div>
+        <label for="form-project-priorty">Priority</label>
+        <select id="form-project-priorty">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </div>
+        <button type="submit" class="form-button" id="form-project-submit-button">Add</button>
+      </form>
+      </div>
+    </dialog>
+
     <button id="add-button">+</button>
 
     <!--Header-->
