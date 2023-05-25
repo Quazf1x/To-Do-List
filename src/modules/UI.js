@@ -85,20 +85,26 @@ export default class UI {
     const addBtn = document.querySelector('#add-button');
     const modalWindow = document.querySelector('#add-task-modal');
     const taskForm = document.querySelector('#add-task-form');
+    const projectsSubmenu = document.querySelector('#project-submenu');
+    const projectCategory = document.querySelector('#project-category');
 
-  addBtn.addEventListener('click',() => {
-    //taskForm.reset(); UNCOMMENT LATER!!!!!!!!!!!
-    modalWindow.showModal();
-  });
+    projectCategory.addEventListener('click',() => {
+      projectsSubmenu.classList.toggle('hidden');
+    });
 
-  taskForm.addEventListener('submit',(e) => {
-    let userData = this.getDataFromUser();
-    if(userData == null) {
-      alert('The task with this name already exists.');
-      return;
-    }
-    this.renderTasksPage(currrentProject);
-  });
-  }
+    addBtn.addEventListener('click',() => {
+      //taskForm.reset(); UNCOMMENT LATER!!!!!!!!!!!
+      modalWindow.showModal();
+    });
+
+    taskForm.addEventListener('submit',(e) => {
+      let userData = this.getDataFromUser();
+      if(userData == null) {
+        alert('The task with this name already exists.');
+        return;
+      }
+      this.renderTasksPage(currrentProject);
+    });
+    };
 
 };

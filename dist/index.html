@@ -51,21 +51,37 @@
    </header>
    <nav>
     <ul id="main-menu">
-      <li>
+      <li class="nav-list-category">
         <img src="../src/img/Home.svg">
         Home
       </li>
-      <li>
+      <li class="nav-list-category">
         <img src="../src/img/Today.svg">
         Today
       </li>
-      <li>
+      <li class="nav-list-category">
         <img src="../src/img/Star.svg">
         Important
       </li>
       <li>
-        <img src="../src/img/moreArrow.svg">
-        <div>Projects</div>
+        <div id="project-category" class="nav-list-category">
+          <img src="../src/img/moreArrow.svg">
+          Projects
+        </div>
+        <ul id="project-submenu">
+          <li class="nav-list-subcategory">
+            <i class="fa-regular fa-circle" style="color: #167934;"></i>
+            Low Priority Task
+          </li>
+          <li class="nav-list-subcategory">
+            <i class="fa-regular fa-circle" style="color: #ab9b26;"></i>
+            Medium Priority Task
+          </li>
+          <li class="nav-list-subcategory">
+            <i class="fa-regular fa-circle" style="color: #a53116;"></i>
+            High Priority Task
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>  
@@ -73,18 +89,6 @@
       <main class="main-wrapper">
         <h1 class="page-name">Today</h1>
         <ul>
-          <!-- <li>
-            <div>
-            <i class="fa-regular fa-circle"></i>
-            <span>
-              Make breakfast
-            </span>
-            </div>
-            <div>
-              <img src="../src/img/Edit.svg">
-              <img src="../src/img/Delete.svg">
-            </div>
-          </li> -->
         </ul>
       </main>
     </div>
