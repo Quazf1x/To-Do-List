@@ -6,7 +6,7 @@
   --yellow: #ffe66d;
   --grey:#ebf3eb;
   --gradient: linear-gradient(to right, var(--red) 30%, var(--yellow));
-
+  --gradient-ver-2: linear-gradient(to bottom, var(--red), var(--yellow));
   --header-height: 80px;
 }
 
@@ -36,8 +36,7 @@ body {
   position: absolute;
   right: 20px;
   bottom: 20px;
-
-  background-image: linear-gradient(to bottom, var(--red), var(--yellow));
+  background-image:var(--gradient-ver-2);
   border: none;
   border-radius: 100%;
   cursor: pointer;
@@ -118,6 +117,7 @@ nav {
   min-height: 45px;
   height: fit-content;
   margin: 15px 0 15px 55px;
+  padding-right: 20px;
 }
 
 .nav-list-subcategory i {
@@ -126,10 +126,32 @@ nav {
   width: 20px;
 }
 
-.nav-list-category img {
+.nav-list-category img, .nav-list-category i {
   height: 30px;
   margin: 0 10px;
   width: 30px;
+}
+
+#button-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#new-project-button {
+  background-color: var(--red);
+  border: none;
+  border-radius: 30px;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  padding: 15px 25px;
+  transition: all .2s;
+}
+
+#new-project-button:active {
+  transform: scale(.8);
 }
 
 
@@ -201,7 +223,6 @@ nav {
 #form-submit-button:active {
   transform: scale(.9);
 }
-
 /*Main content*/
 
 #content {
