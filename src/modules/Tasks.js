@@ -20,4 +20,4 @@ export function addTask(name, date, priority, projectIndex) {
   const newTask = new task(name, date, priority);
   projectList[projectIndex].tasks.push(newTask);
   return newTask;
-}
+};

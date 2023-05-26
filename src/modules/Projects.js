@@ -32,10 +32,16 @@ export function addProject(name, description, priority) {
   return newProject;
 }
 
+export function deleteProject(projectName) {
+  for (let project of projectList){
+    if ( project.name == projectName){
+      return projectList.splice(projectList.indexOf(project), 1);
+  }}
+};
+
 export function findTask(project, taskName, shouldDelete) {
   for (let task of project.tasks){
-    if ( task.name == taskName)
-    {
+    if ( task.name == taskName){
       if(shouldDelete) {
         return project.tasks.splice(project.tasks.indexOf(task), 1);
       }

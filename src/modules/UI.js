@@ -1,4 +1,4 @@
-import { projectList, addProject, findTask, currrentProject } from "./Projects";
+import { projectList, addProject, deleteProject, findTask, currrentProject } from "./Projects";
 import task, {addTask} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
@@ -10,6 +10,7 @@ export default class UI {
 
   static loadPage() {
     this.addEventListeners();
+    this.renderTasksPage(currrentProject);
     this.renderProjectsPage();
   }
 
@@ -68,8 +69,11 @@ export default class UI {
 
   static renderProject(project) {
     const projectLI = this.createHtmlElement('li', null, ['nav-list-subcategory'], null);
+    const projectLeftWrapper = this.createHtmlElement('div', null, null, null);
     const projectIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null);
     const projectName = this.createHtmlElement('span', null, null, project.name);
+    const projectDelete = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle-xmark'], null);
+    projectDelete.style.color = '#a53116';
 
     switch(project.priority){
       case 'Low':
@@ -83,7 +87,17 @@ export default class UI {
       break;
     };
 
-    projectLI.append(projectIcon, projectName);
+    projectDelete.addEventListener('click', () => {
+      deleteProject(project.name);
+      this.renderProjectsPage();
+    });
+
+    projectName.addEventListener('click', () => {
+      //..
+    });
+
+    projectLeftWrapper.append(projectIcon, projectName);
+    projectLI.append(projectLeftWrapper, projectDelete);
     ulNavMenu.appendChild(projectLI);
   }
 
@@ -121,13 +135,22 @@ export default class UI {
   };
 
   static getProjectDataFromUser() {
+    let alreadyExists = false;
     const projectName = document.querySelector('#form-project-name').value;
+
+    projectList.forEach(project => {
+      if(project.name === projectName)
+      alreadyExists = true;
+    });
+    if(alreadyExists) return null;
+
     const projectDescription = document.querySelector('#form-project-description').value;
     const projectPriority = document.querySelector('#form-project-priorty').value;
 
     const newProject = addProject(projectName, projectDescription, projectPriority);
     return newProject;
   }
+
   static addEventListeners(){
     const addTaskBtn = document.querySelector('#add-button');
     const addProjectBtn = document.querySelector('#new-project-button');
@@ -156,7 +179,7 @@ export default class UI {
     taskForm.addEventListener('submit',() => {
       let userData = this.getTaskDataFromUser();
       if(userData == null) {
-        alert('The task with this name already exists.');
+        alert('A task with this name already exists.');
         return;
       }
       this.renderTasksPage(currrentProject);
@@ -164,8 +187,11 @@ export default class UI {
 
     projectForm.addEventListener('submit', () => {
       const userProject = this.getProjectDataFromUser();
+      if (userProject == null) {
+        alert('A project with this name already exists.');
+        return;
+      }
       this.renderProjectsPage();
     });
-
-    };
+  };
 };
