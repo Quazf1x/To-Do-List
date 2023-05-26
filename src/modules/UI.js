@@ -4,8 +4,14 @@ import task, {addTask} from "./Tasks";
 const contentDiv = document.querySelector('#content');
 const mainWrapper = document.querySelector('.main-wrapper');
 const pageUL = document.querySelector('#content ul');
+const ulNavMenu = document.querySelector('#project-submenu');
 
 export default class UI {
+
+  static loadPage() {
+    this.addEventListeners();
+    this.renderProjectsPage();
+  }
 
   static createHtmlElement(type, id, classesList, content) {
     const element = document.createElement(type);
@@ -61,7 +67,6 @@ export default class UI {
   }
 
   static renderProject(project) {
-    const ulMenu = document.querySelector('#project-submenu');
     const projectLI = this.createHtmlElement('li', null, ['nav-list-subcategory'], null);
     const projectIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null);
     const projectName = this.createHtmlElement('span', null, null, project.name);
@@ -79,11 +84,15 @@ export default class UI {
     };
 
     projectLI.append(projectIcon, projectName);
-    ulMenu.appendChild(projectLI);
+    ulNavMenu.appendChild(projectLI);
   }
 
   static clearMainPage() {
     pageUL.innerHTML = '';
+  }
+
+  static clearProjectList() {
+    ulNavMenu.innerHTML = '';
   }
 
   static renderTasksPage(project) {
@@ -91,8 +100,15 @@ export default class UI {
     project.tasks.forEach(task => {
       this.renderTask(task);
     });
-  }
+  };
 
+  static renderProjectsPage() {
+    this.clearProjectList();
+    projectList.forEach(project => {
+      this.renderProject(project);
+    })
+  }
+  
   static getTaskDataFromUser() {
     const taskName = document.querySelector('#form-task-name').value;
     if(findTask(currrentProject, taskName, false)) return null;
@@ -112,7 +128,6 @@ export default class UI {
     const newProject = addProject(projectName, projectDescription, projectPriority);
     return newProject;
   }
-  
   static addEventListeners(){
     const addTaskBtn = document.querySelector('#add-button');
     const addProjectBtn = document.querySelector('#new-project-button');
@@ -149,7 +164,7 @@ export default class UI {
 
     projectForm.addEventListener('submit', () => {
       const userProject = this.getProjectDataFromUser();
-      this.renderProject(userProject);
+      this.renderProjectsPage();
     });
 
     };

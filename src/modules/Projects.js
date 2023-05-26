@@ -2,7 +2,7 @@ export let projectList = []
 export let currrentProject;
 
 export function createFirstProject() { //dummy function,remove later??
-  projectList.push(new project('Default Project', '21-05-2023', 'lol :3', 'Medium', []));
+  projectList.push(new project('Default Project', 'lol :3', 'Low'));
   currrentProject = projectList[0];
 };
 
