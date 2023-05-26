@@ -1,4 +1,4 @@
-import { projectList, findTask, currrentProject } from "./Projects";
+import { projectList, addProject, findTask, currrentProject } from "./Projects";
 import task, {addTask} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
@@ -19,7 +19,6 @@ export default class UI {
   }
 
   static renderTask(task) {
-    
     const taskNameDiv = this.createHtmlElement('div', null, null, null);
     const taskLI = this.createHtmlElement('li', null, null, null); 
     const taskIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null); 
@@ -61,6 +60,28 @@ export default class UI {
     mainWrapper.appendChild(pageUL);
   }
 
+  static renderProject(project) {
+    const ulMenu = document.querySelector('#project-submenu');
+    const projectLI = this.createHtmlElement('li', null, ['nav-list-subcategory'], null);
+    const projectIcon = this.createHtmlElement('i', null, ['fa-regular', 'fa-circle'], null);
+    const projectName = this.createHtmlElement('span', null, null, project.name);
+
+    switch(project.priority){
+      case 'Low':
+        projectIcon.style.color = '#167934';
+        break;
+      case 'Medium':
+        projectIcon.style.color = '#ab9b26';
+        break;
+      case 'High':
+        projectIcon.style.color = '#a53116';
+      break;
+    };
+
+    projectLI.append(projectIcon, projectName);
+    ulMenu.appendChild(projectLI);
+  }
+
   static clearMainPage() {
     pageUL.innerHTML = '';
   }
@@ -72,15 +93,25 @@ export default class UI {
     });
   }
 
-  static getDataFromUser() {
+  static getTaskDataFromUser() {
     const taskName = document.querySelector('#form-task-name').value;
     if(findTask(currrentProject, taskName, false)) return null;
 
     const taskDate = document.querySelector('#form-task-date').value;
     const taskPriority = document.querySelector('#form-task-priorty').value;
+
     const newTask = addTask(taskName, taskDate, taskPriority, 0);
     return newTask;
   };
+
+  static getProjectDataFromUser() {
+    const projectName = document.querySelector('#form-project-name').value;
+    const projectDescription = document.querySelector('#form-project-description').value;
+    const projectPriority = document.querySelector('#form-project-priorty').value;
+
+    const newProject = addProject(projectName, projectDescription, projectPriority);
+    return newProject;
+  }
   
   static addEventListeners(){
     const addTaskBtn = document.querySelector('#add-button');
@@ -89,6 +120,7 @@ export default class UI {
     const modalProjectWindow = document.querySelector('#add-project-modal');
     const modalTaskWindow = document.querySelector('#add-task-modal');
     const taskForm = document.querySelector('#add-task-form');
+    const projectForm = document.querySelector('#add-project-modal');
     const projectsSubmenu = document.querySelector('#project-submenu');
     const projectCategory = document.querySelector('#project-category');
 
@@ -106,14 +138,19 @@ export default class UI {
       modalProjectWindow.showModal();
     })
 
-    taskForm.addEventListener('submit',(e) => {
-      let userData = this.getDataFromUser();
+    taskForm.addEventListener('submit',() => {
+      let userData = this.getTaskDataFromUser();
       if(userData == null) {
         alert('The task with this name already exists.');
         return;
       }
       this.renderTasksPage(currrentProject);
     });
-    };
 
+    projectForm.addEventListener('submit', () => {
+      const userProject = this.getProjectDataFromUser();
+      this.renderProject(userProject);
+    });
+
+    };
 };

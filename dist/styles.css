@@ -163,11 +163,11 @@ nav {
   border-radius: 20px;
   height: 400px;
   margin: auto;
-  width: clamp(400px,70%,700px);
+  width: clamp(400px,70%,550px);
 }
 
 #add-project-modal {
-  height: 430px;
+  height: 480px;
 }
 
 .dialog-wrapper {
@@ -188,23 +188,27 @@ nav {
   padding: 10px 30px;
 }
 
-.dialog-wrapper input, .dialog-wrapper select {
+.dialog-wrapper input, .dialog-wrapper select, .dialog-wrapper textarea {
   border: 2px solid var(--grey);
   border-radius: 20px;
-  width: 50%;
+  width: 80%;
   padding: 8px;
+}
+
+#form-project-description {
+  height: 60px;
 }
 
 .dialog-wrapper select {
   width: 20%;
 }
 
-.dialog-wrapper input:focus, .dialog-wrapper select:focus {
+.dialog-wrapper input:focus, .dialog-wrapper select:focus, .dialog-wrapper textarea:focus {
   outline: none;
   border: 2px solid var(--blue);
 }
 
-.dialog-wrapper input, .dialog-wrapper label {
+.dialog-wrapper input, .dialog-wrapper label, .dialog-wrapper textarea {
   display: block;
   margin: 5px 0;
 }
@@ -228,6 +232,7 @@ nav {
 .form-button:active {
   transform: scale(.9);
 }
+
 /*Main content*/
 
 #content {
@@ -237,6 +242,11 @@ nav {
 .page-name {
   font-weight: 500;
   padding: 25px;
+}
+
+#project-description {
+  word-break: break-all;
+  width: 100%;
 }
 
 .main-wrapper {
