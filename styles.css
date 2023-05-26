@@ -92,7 +92,7 @@ nav {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   cursor: pointer;
-  word-break: break-all;
+  word-break: break-word;
   display: flex;
   transition: all .15s;
   user-select: none;
