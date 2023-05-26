@@ -114,15 +114,21 @@ nav {
 
 .nav-list-subcategory {
   font-size: 1.3rem;
+  justify-content: space-between;
+  text-align: center;
   min-height: 45px;
   height: fit-content;
   margin: 15px 0 15px 35px;
-  padding-right: 20px;
+}
+
+.nav-list-subcategory div {
+  align-items: center;
+  display: flex;
 }
 
 .nav-list-subcategory i {
   height: 20px;
-  margin: 0 15px;
+  margin: 0 7px;
   width: 20px;
 }
 
