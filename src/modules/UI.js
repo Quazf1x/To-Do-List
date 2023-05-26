@@ -42,8 +42,14 @@ export default class UI {
     taskIconsDiv.append(taskDate, taskDeleteIcon);
     taskNameDiv.append(taskIcon, taskSpan);
 
-    taskIcon.addEventListener('click',() => {
+    if(task.isDone) {
+      taskIcon.classList.remove('fa-circle');
+      taskIcon.classList.add('fa-circle-check');
+      taskSpan.classList.add('crossed-words');
+    }
 
+    taskIcon.addEventListener('click',() => {
+      task.isDone = !task.isDone
       taskIcon.classList.toggle('fa-circle-check');
       taskIcon.classList.toggle('fa-circle');
       taskSpan.classList.toggle('crossed-words');
@@ -110,6 +116,7 @@ export default class UI {
   }
 
   static clearMainPage() {
+    document.querySelector('#project-description').textContent = '';
     pageUL.innerHTML = '';
   }
 
@@ -123,15 +130,27 @@ export default class UI {
   }
 
   static renderTasksPage(project) {
+    this.clearMainPage();
     const projectDescription = document.querySelector('#project-description');
     projectDescription.textContent = project.description;
-
     this.changePageName(project.name);
-    this.clearMainPage();
     project.tasks.forEach(task => {
       this.renderTask(task);
     });
+
   };
+
+  static renderHomePage() {
+    this.clearMainPage();
+    this.changePageName('Home');
+
+
+    projectList.forEach(project => {
+      project.tasks.forEach(task => {
+        this.renderTask(task);
+      })
+    });
+  }
 
   static renderProjectsNav() {
     this.clearProjectList();
@@ -166,11 +185,12 @@ export default class UI {
 
     const newProject = addProject(projectName, projectDescription, projectPriority);
     return newProject;
-  }
+  };
 
   static addEventListeners(){
     const addTaskBtn = document.querySelector('#add-button');
     const addProjectBtn = document.querySelector('#new-project-button');
+    const homePage = document.querySelector('#home-page');
 
     const modalProjectWindow = document.querySelector('#add-project-modal');
     const modalTaskWindow = document.querySelector('#add-task-modal');
@@ -178,6 +198,10 @@ export default class UI {
     const projectForm = document.querySelector('#add-project-modal');
     const projectsSubmenu = document.querySelector('#project-submenu');
     const projectCategory = document.querySelector('#project-category');
+
+    homePage.addEventListener('click', () => {
+      this.renderHomePage();
+    });
 
     projectCategory.addEventListener('click',() => {
       projectsSubmenu.classList.toggle('hidden');
