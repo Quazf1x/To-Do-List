@@ -1,10 +1,11 @@
 import { projectList } from './Projects.js';
 
 export default class task {
-  constructor(name, date, priority){
+  constructor(name, date, priority, isDone = false){
     this._name = name;
     this.date = date;
     this.priority = priority;
+    this.isDone = isDone;
   }
 
   get name() {

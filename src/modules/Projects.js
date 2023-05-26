@@ -2,7 +2,7 @@ export let projectList = []
 export let currrentProject;
 
 export function createFirstProject() { //dummy function,remove later??
-  projectList.push(new project('Default Project', 'lol :3', 'Low'));
+  projectList.push(new project('Default Project', 'This is the default project.', 'Low'));
   changeCurrentProject(0);
 };
 
@@ -11,7 +11,7 @@ export default class project {
   constructor(name, description, priority){
     this._name = name;
    // this._date = date;
-    this._description = description;
+    this.description = description;
     this.priority = priority;
     this.tasks = [];
   }

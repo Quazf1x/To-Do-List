@@ -42,7 +42,8 @@ export default class UI {
     taskIconsDiv.append(taskDate, taskDeleteIcon);
     taskNameDiv.append(taskIcon, taskSpan);
 
-    taskIcon.addEventListener('click',() => { 
+    taskIcon.addEventListener('click',() => {
+
       taskIcon.classList.toggle('fa-circle-check');
       taskIcon.classList.toggle('fa-circle');
       taskSpan.classList.toggle('crossed-words');
@@ -116,7 +117,16 @@ export default class UI {
     ulNavMenu.innerHTML = '';
   }
 
+  static changePageName(name) {
+    const pageName = document.querySelector('#page-name');
+    pageName.textContent = name;
+  }
+
   static renderTasksPage(project) {
+    const projectDescription = document.querySelector('#project-description');
+    projectDescription.textContent = project.description;
+
+    this.changePageName(project.name);
     this.clearMainPage();
     project.tasks.forEach(task => {
       this.renderTask(task);
@@ -190,6 +200,7 @@ export default class UI {
         return;
       }
       this.renderTasksPage(getCurrentProject());
+      console.log(projectList);
     });
 
     projectForm.addEventListener('submit', () => {
