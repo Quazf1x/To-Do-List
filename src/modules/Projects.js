@@ -3,7 +3,7 @@ export let currrentProject;
 
 export function createFirstProject() { //dummy function,remove later??
   projectList.push(new project('Default Project', 'lol :3', 'Low'));
-  currrentProject = projectList[0];
+  changeCurrentProject(0);
 };
 
 export default class project {
@@ -32,12 +32,24 @@ export function addProject(name, description, priority) {
   return newProject;
 }
 
-export function deleteProject(projectName) {
+export function findProject(projectName, shouldDelete) {
   for (let project of projectList){
     if ( project.name == projectName){
+      if(shouldDelete) {
       return projectList.splice(projectList.indexOf(project), 1);
+    }
+    else return project;
   }}
 };
+
+export function changeCurrentProject(index) {
+  currrentProject = projectList[index];
+  return currrentProject;
+}
+
+export function getCurrentProject() {
+  return currrentProject;
+}
 
 export function findTask(project, taskName, shouldDelete) {
   for (let task of project.tasks){

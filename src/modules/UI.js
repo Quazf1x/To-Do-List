@@ -1,4 +1,4 @@
-import { projectList, addProject, deleteProject, findTask, currrentProject } from "./Projects";
+import { projectList, addProject, findProject, findTask, getCurrentProject, changeCurrentProject } from "./Projects";
 import task, {addTask} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
@@ -10,8 +10,12 @@ export default class UI {
 
   static loadPage() {
     this.addEventListeners();
-    this.renderTasksPage(currrentProject);
-    this.renderProjectsPage();
+    this.renderTasksPage(getCurrentProject());
+    this.renderProjectsNav();
+  }
+
+  static loadProjectPage(project) {
+
   }
 
   static createHtmlElement(type, id, classesList, content) {
@@ -46,8 +50,8 @@ export default class UI {
 
      taskDeleteIcon.addEventListener('click', () => {
       //pageUL.removeChild(taskLI); - the old solution. thought that re-rendering from project tasks array each time would be better(?)
-      findTask(currrentProject, task.name, true);
-      this.renderTasksPage(currrentProject);
+      findTask(getCurrentProject(), task.name, true);
+      this.renderTasksPage(getCurrentProject());
      });
 
      switch(task.priority){
@@ -88,12 +92,15 @@ export default class UI {
     };
 
     projectDelete.addEventListener('click', () => {
-      deleteProject(project.name);
-      this.renderProjectsPage();
+      findProject(project.name, true);
+      this.renderProjectsNav();
     });
 
-    projectName.addEventListener('click', () => {
-      //..
+    projectName.addEventListener('click', (e) => {
+      const projectName = e.target.textContent;
+      const projectIndex = projectList.indexOf(findProject(projectName, false));
+      changeCurrentProject(projectIndex);
+      this.renderTasksPage(getCurrentProject());
     });
 
     projectLeftWrapper.append(projectIcon, projectName);
@@ -116,7 +123,7 @@ export default class UI {
     });
   };
 
-  static renderProjectsPage() {
+  static renderProjectsNav() {
     this.clearProjectList();
     projectList.forEach(project => {
       this.renderProject(project);
@@ -125,12 +132,12 @@ export default class UI {
   
   static getTaskDataFromUser() {
     const taskName = document.querySelector('#form-task-name').value;
-    if(findTask(currrentProject, taskName, false)) return null;
+    if(findTask(getCurrentProject(), taskName, false)) return null;
 
     const taskDate = document.querySelector('#form-task-date').value;
     const taskPriority = document.querySelector('#form-task-priorty').value;
 
-    const newTask = addTask(taskName, taskDate, taskPriority, 0);
+    const newTask = addTask(taskName, taskDate, taskPriority, projectList.indexOf(getCurrentProject()));
     return newTask;
   };
 
@@ -182,7 +189,7 @@ export default class UI {
         alert('A task with this name already exists.');
         return;
       }
-      this.renderTasksPage(currrentProject);
+      this.renderTasksPage(getCurrentProject());
     });
 
     projectForm.addEventListener('submit', () => {
@@ -191,7 +198,7 @@ export default class UI {
         alert('A project with this name already exists.');
         return;
       }
-      this.renderProjectsPage();
+      this.renderProjectsNav();
     });
   };
 };
