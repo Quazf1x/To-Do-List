@@ -99,6 +99,8 @@ export default class UI {
     };
 
     projectDelete.addEventListener('click', () => {
+      changeCurrentProject(projectList.indexOf(project) - 1);
+      this.renderTasksPage(getCurrentProject());
       findProject(project.name, true);
       this.renderProjectsNav();
     });
@@ -155,6 +157,7 @@ export default class UI {
     this.changePageName('Today\'s tasks');
 
     projectList.forEach(project => {
+      this.renderProjectName(project.name);
       project.tasks.forEach(task => {
         if(isTaskToday(task)){
           this.renderTask(task);
