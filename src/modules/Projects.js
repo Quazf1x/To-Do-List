@@ -1,5 +1,5 @@
 export let projectList = []
-export let currrentProject;
+let currrentProject;
 
 export function createFirstProject() { //dummy function,remove later??
   projectList.push(new project('Default Project', 'This is the default project.', 'Low'));
