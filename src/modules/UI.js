@@ -1,5 +1,5 @@
 import { projectList, addProject, findProject, findTask, getCurrentProject, changeCurrentProject } from "./Projects";
-import task, {addTask} from "./Tasks";
+import task, { addTask, isTaskToday} from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
 const mainWrapper = document.querySelector('.main-wrapper');
@@ -137,17 +137,28 @@ export default class UI {
     project.tasks.forEach(task => {
       this.renderTask(task);
     });
-
   };
 
   static renderHomePage() {
     this.clearMainPage();
     this.changePageName('Home');
 
-
     projectList.forEach(project => {
       project.tasks.forEach(task => {
         this.renderTask(task);
+      })
+    });
+  }
+
+  static renderTodayPage() {
+    this.clearMainPage();
+    this.changePageName('Today\'s tasks');
+
+    projectList.forEach(project => {
+      project.tasks.forEach(task => {
+        if(isTaskToday(task)){
+          this.renderTask(task);
+        };
       })
     });
   }
@@ -191,6 +202,7 @@ export default class UI {
     const addTaskBtn = document.querySelector('#add-button');
     const addProjectBtn = document.querySelector('#new-project-button');
     const homePage = document.querySelector('#home-page');
+    const todayPage = document.querySelector('#today-page');
 
     const modalProjectWindow = document.querySelector('#add-project-modal');
     const modalTaskWindow = document.querySelector('#add-task-modal');
@@ -201,6 +213,10 @@ export default class UI {
 
     homePage.addEventListener('click', () => {
       this.renderHomePage();
+    });
+
+    todayPage.addEventListener('click', () => {
+      this.renderTodayPage();
     });
 
     projectCategory.addEventListener('click',() => {
@@ -215,7 +231,7 @@ export default class UI {
     addProjectBtn.addEventListener('click', () => {
       //taskForm.reset();
       modalProjectWindow.showModal();
-    })
+    });
 
     taskForm.addEventListener('submit',() => {
       let userData = this.getTaskDataFromUser();
@@ -224,7 +240,6 @@ export default class UI {
         return;
       }
       this.renderTasksPage(getCurrentProject());
-      console.log(projectList);
     });
 
     projectForm.addEventListener('submit', () => {
