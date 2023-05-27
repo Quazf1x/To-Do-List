@@ -157,7 +157,6 @@ export default class UI {
     this.changePageName('Today\'s tasks');
 
     projectList.forEach(project => {
-      this.renderProjectName(project.name);
       project.tasks.forEach(task => {
         if(isTaskToday(task)){
           this.renderTask(task);
