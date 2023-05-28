@@ -8,6 +8,15 @@ export default class task {
     this.isDone = isDone;
   }
 
+   isTaskToday() {
+    const todayDate = new Date;
+    const day = todayDate.getDate();
+    const month = todayDate.getMonth();
+    const year = todayDate.getFullYear();
+    const date = `${year}-0${month + 1}-${day}`;
+    return (this.date === date ? true : false);
+  }
+
   get name() {
     return this._name;
   }
@@ -16,15 +25,6 @@ export default class task {
     this._name = value;
   }
 };
-
-export function isTaskToday(task) {
-  const todayDate = new Date;
-  const day = todayDate.getDate();
-  const month = todayDate.getMonth();
-  const year = todayDate.getFullYear();
-  const date = `${year}-0${month + 1}-${day}`;
-  return (task.date === date ? true : false);
-}
 
 export function addTask(name, date, priority, projectIndex) {
   const newTask = new task(name, date, priority);

@@ -24,6 +24,17 @@ export default class project {
     this._name = value;
   }
 
+  findTask( taskName, shouldDelete) {
+    for (let task of this.tasks){
+      if ( task.name == taskName){
+        if(shouldDelete) {
+          return this.tasks.splice(this.tasks.indexOf(task), 1);
+        }
+        else return true;
+      }
+    }
+  };
+
 };
 
 export function addProject(name, description, priority) {
@@ -50,14 +61,3 @@ export function changeCurrentProject(index) {
 export function getCurrentProject() {
   return currrentProject;
 }
-
-export function findTask(project, taskName, shouldDelete) {
-  for (let task of project.tasks){
-    if ( task.name == taskName){
-      if(shouldDelete) {
-        return project.tasks.splice(project.tasks.indexOf(task), 1);
-      }
-      else return true;
-    }
-  }
-};

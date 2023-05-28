@@ -1,5 +1,5 @@
-import { projectList, addProject, findProject, findTask, getCurrentProject, changeCurrentProject } from "./Projects";
-import { addTask, isTaskToday} from "./Tasks";
+import { projectList, addProject, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
+import { addTask } from "./Tasks";
 
 const contentDiv = document.querySelector('#content');
 const mainWrapper = document.querySelector('.main-wrapper');
@@ -23,6 +23,41 @@ export default class UI {
     })};
     element.textContent = content;
     return element;
+  }
+
+  static clearMainPage() {
+    document.querySelector('#project-description').textContent = '';
+    pageUL.innerHTML = '';
+  }
+
+  static clearProjectList() {
+    ulNavMenu.innerHTML = '';
+  }
+
+  static changePageName(name) {
+    const pageName = document.querySelector('#page-name');
+    pageName.textContent = name;
+  }
+
+  static renderProjectTitle(project) {
+
+    const title = this.createHtmlElement('h2', null, null, project.name);
+    const titleLI = this.createHtmlElement('li', null, null, null);
+
+    switch(project.priority){
+      case 'Low':
+        titleLI.style.borderLeftColor = '#167934';
+        break;
+      case 'Medium':
+        titleLI.style.borderLeftColor = '#ab9b26';
+        break;
+      case 'High':
+        titleLI.style.borderLeftColor = '#a53116';
+      break;
+    };
+
+    titleLI.appendChild(title);
+      pageUL.appendChild(titleLI);
   }
 
   static renderTask(task) {
@@ -53,7 +88,7 @@ export default class UI {
 
      taskDeleteIcon.addEventListener('click', () => {
       //pageUL.removeChild(taskLI); - the old solution. thought that re-rendering from project tasks array each time would be better(?)
-      findTask(getCurrentProject(), task.name, true);
+      getCurrentProject().findTask(task.name, true);
       this.renderTasksPage();
      });
 
@@ -116,20 +151,6 @@ export default class UI {
     ulNavMenu.appendChild(projectLI);
   }
 
-  static clearMainPage() {
-    document.querySelector('#project-description').textContent = '';
-    pageUL.innerHTML = '';
-  }
-
-  static clearProjectList() {
-    ulNavMenu.innerHTML = '';
-  }
-
-  static changePageName(name) {
-    const pageName = document.querySelector('#page-name');
-    pageName.textContent = name;
-  }
-
   static renderTasksPage() {
     const project = getCurrentProject();
     this.clearMainPage();
@@ -139,13 +160,14 @@ export default class UI {
     project.tasks.forEach(task => {
       this.renderTask(task);
     });
-  };
+  }
 
   static renderHomePage() {
     this.clearMainPage();
     this.changePageName('Home');
 
     projectList.forEach(project => {
+      this.renderProjectTitle(project);
       project.tasks.forEach(task => {
         this.renderTask(task);
       })
@@ -157,8 +179,9 @@ export default class UI {
     this.changePageName('Today\'s tasks');
 
     projectList.forEach(project => {
+      this.renderProjectTitle(project);
       project.tasks.forEach(task => {
-        if(isTaskToday(task)){
+        if(task.isTaskToday()){
           this.renderTask(task);
         };
       })
@@ -174,14 +197,14 @@ export default class UI {
   
   static getTaskDataFromUser() {
     const taskName = document.querySelector('#form-task-name').value;
-    if(findTask(getCurrentProject(), taskName, false)) return null;
+    if(getCurrentProject().findTask(taskName, false)) return null;
 
     const taskDate = document.querySelector('#form-task-date').value;
     const taskPriority = document.querySelector('#form-task-priorty').value;
 
     const newTask = addTask(taskName, taskDate, taskPriority, projectList.indexOf(getCurrentProject()));
     return newTask;
-  };
+  }
 
   static getProjectDataFromUser() {
     let alreadyExists = false;
@@ -198,7 +221,7 @@ export default class UI {
 
     const newProject = addProject(projectName, projectDescription, projectPriority);
     return newProject;
-  };
+  }
 
   static addEventListeners(){
     const addTaskBtn = document.querySelector('#add-button');
@@ -252,5 +275,5 @@ export default class UI {
       }
       this.renderProjectsNav();
     });
-  };
+  }
 };
