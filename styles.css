@@ -251,7 +251,7 @@ nav {
 }
 
 #project-description {
-  word-break: break-all;
+  word-break: break-word;
   width: 100%;
 }
 
@@ -273,7 +273,7 @@ nav {
   list-style: none;
   margin: 25px 0;
   padding: 10px 15px;
-  word-break: break-all;
+  word-break: break-word;
   width: 100%;
 }
 
@@ -290,4 +290,54 @@ nav {
 .main-wrapper ul li div {
   align-items: center;
   display: flex;
+}
+
+.main-wrapper ul li span {
+  padding-right: 10px;
+}
+
+@media only screen and (max-width:1000px) {
+  #page-wrapper {
+    grid-template: 100px 380px 1fr/ 1fr;
+  }
+
+  header {
+    grid-column: 1/1;
+  }
+
+  nav {
+    padding-top: 0px;
+  }
+
+  .nav-list-category, .nav-list-subcategory {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    width: 100%;
+  }
+
+  .nav-list-category {
+    margin: 15px 0 15px 0px;
+  }
+  
+  .nav-list-subcategory {
+    margin: 15px 0 15px 0px;
+  }
+
+  #new-project-button {
+    border-radius: 10px;
+    width: 90%;
+  }
+
+  #content {
+    margin: 20px 10vw 20px 2vw;
+  }
+
+  .main-wrapper ul li {
+    margin: 25px 0;
+    padding: 10px 0 10px 15px;
+  }
+
+  .main-wrapper ul li div:first-child {
+    max-width: 60%;
+  }
 }
