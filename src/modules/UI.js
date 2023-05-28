@@ -1,5 +1,6 @@
 import { projectList, addProject, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
 import { addTask } from "./Tasks";
+import Swal from 'sweetalert2'
 
 const contentDiv = document.querySelector('#content');
 const mainWrapper = document.querySelector('.main-wrapper');
@@ -261,7 +262,14 @@ export default class UI {
     taskForm.addEventListener('submit',() => {
       let userData = this.getTaskDataFromUser();
       if(userData == null) {
-        alert('A task with this name already exists.');
+        Swal.fire({
+          title: 'Hold up!',
+          text: 'A task with this name already exists.',
+          icon: 'error',
+          confirmButtonText: 'Ouch :(',
+          confirmButtonColor: '#ff6b6b',
+          heightAuto: false
+        });
         return;
       }
       this.renderTasksPage();
@@ -270,7 +278,14 @@ export default class UI {
     projectForm.addEventListener('submit', () => {
       const userProject = this.getProjectDataFromUser();
       if (userProject == null) {
-        alert('A project with this name already exists.');
+        Swal.fire({
+          title: 'Hold up!',
+          text: 'A project with this name already exists.',
+          icon: 'error',
+          confirmButtonText: 'Ouch :(',
+          confirmButtonColor: '#ff6b6b',
+          heightAuto: false
+        });
         return;
       }
       this.renderProjectsNav();
