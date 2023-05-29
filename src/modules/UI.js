@@ -131,11 +131,23 @@ export default class UI {
     };
 
     projectDelete.addEventListener('click', () => {
+      if(projectList.length === 1){
+        Swal.fire({
+          title: 'Wait a second!',
+          text: 'You must have at least one project!',
+          icon: 'error',
+          confirmButtonText: 'Okay',
+          confirmButtonColor: '#ff6b6b',
+          heightAuto: false
+        });
+        return;
+      }
       const index = projectList.indexOf(project);
       if(index!==0) {
         changeCurrentProject(index - 1);
       }
       else changeCurrentProject(index + 1);
+
       this.renderTasksPage();
       findProject(project.name, true);
       this.renderProjectsNav();
