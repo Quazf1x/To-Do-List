@@ -1,4 +1,5 @@
-import { projectList, addProject, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
+import { projectList, addProject, findProject } from "./Projects";
+import { getCurrentProject, changeCurrentProject } from "./storage";
 import { addTask } from "./Tasks";
 import Swal from 'sweetalert2'
 

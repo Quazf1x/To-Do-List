@@ -248,6 +248,7 @@ nav {
 #page-name {
   font-weight: 500;
   padding: 25px;
+  word-break: break-all;
 }
 
 #project-description {
@@ -298,7 +299,7 @@ nav {
 
 @media only screen and (max-width:1000px) {
   #page-wrapper {
-    grid-template: 100px 380px 1fr/ 1fr;
+    grid-template: 100px fit-content(380px)/ 1fr;
   }
 
   header {
@@ -306,6 +307,7 @@ nav {
   }
 
   nav {
+    height: fit-content;
     padding-top: 0px;
   }
 
@@ -329,6 +331,7 @@ nav {
   }
 
   #content {
+    padding-bottom: 50px;
     margin: 20px 10vw 20px 2vw;
   }
 
