@@ -1,23 +1,10 @@
-import { addTask } from "./Tasks";
 import { storage } from "./storage";
-export let projectList = []
+export let projectList = [];
 let currrentProject;
 
-// export function createFirstProject() { //dummy function,remove later??
-//   if(window.localStorage.length === 0); {
-//     console.log(window.localStorage.length)
-//     projectList.push(new project('Default Project', 'This is the default project.', 'Low'));
-//   }
-//  // addTask('name','2004-03-04', 'Medium',0);
-//  // addTask('Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Long Name','2004-03-04', 'Low',0);
-//   changeCurrentProject(0);
-// };
-
 export default class project {
-
   constructor(name, description, priority){
     this.name = name;
-   // this._date = date;
     this.description = description;
     this.priority = priority;
     this.tasks = [];

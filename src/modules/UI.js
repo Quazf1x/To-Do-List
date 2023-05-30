@@ -1,9 +1,12 @@
 import { projectList, addProject, findTask, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
-import { addTask } from "./Tasks";
+import { addTask, isTaskToday } from "./Tasks";
 import { storage } from "./storage";
-import Swal from 'sweetalert2'
 
-const contentDiv = document.querySelector('#content');
+import deleteIcon from '/src/img/Delete.svg';
+import '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
+import '/node_modules/@fortawesome/fontawesome-free/css/regular.css';
+import Swal from 'sweetalert2';
+
 const mainWrapper = document.querySelector('.main-wrapper');
 const pageUL = document.querySelector('#content ul');
 const ulNavMenu = document.querySelector('#project-submenu');
@@ -71,7 +74,7 @@ export default class UI {
     const taskDate = this.createHtmlElement('span', null, null, task.date);
     const taskDeleteIcon = this.createHtmlElement('img', null, null, null);
 
-    taskDeleteIcon.setAttribute('src', '../src/img/Delete.svg');
+    taskDeleteIcon.src = deleteIcon;
     taskIconsDiv.append(taskDate, taskDeleteIcon);
     taskNameDiv.append(taskIcon, taskSpan);
 
@@ -196,7 +199,7 @@ export default class UI {
     projectList.forEach(project => {
       this.renderProjectTitle(project);
       project.tasks.forEach(task => {
-        if(task.isTaskToday()){
+        if(isTaskToday(task)){
           this.renderTask(task);
         };
       })
@@ -264,12 +267,12 @@ export default class UI {
     });
 
     addTaskBtn.addEventListener('click',() => {
-      //taskForm.reset(); UNCOMMENT LATER!!!!!!!!!!!
+      taskForm.reset();
       modalTaskWindow.showModal();
     });
 
     addProjectBtn.addEventListener('click', () => {
-      //taskForm.reset();
+      taskForm.reset();
       modalProjectWindow.showModal();
     });
 
