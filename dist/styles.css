@@ -343,4 +343,8 @@ nav {
   .main-wrapper ul li div:first-child {
     max-width: 60%;
   }
+
+  .dialog-wrapper select {
+    width: 50%;
+  }
 }
