@@ -6,6 +6,7 @@ import deleteIcon from '/src/img/Delete.svg';
 import homeIcon from '/src/img/Home.svg';
 import todayIcon from '/src/img/Today.svg';
 import projectsIcon from '/src/img/moreArrow.svg';
+import logo from '/src/img/Logo.svg'
 
 import '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
 import '/node_modules/@fortawesome/fontawesome-free/css/regular.css';
@@ -249,7 +250,9 @@ export default class UI {
     const homeSectionIcon = document.querySelector('#home-page img');
     const todaySectionIcon = document.querySelector('#today-page img');
     const projectsSectionIcon = document.querySelector('#project-category img');
+    const headerLogo = document.querySelector('#header-logo');
 
+    headerLogo.src = logo;
     homeSectionIcon.src = homeIcon;
     todaySectionIcon.src = todayIcon;
     projectsSectionIcon.src = projectsIcon;
