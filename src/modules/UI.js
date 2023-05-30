@@ -1,5 +1,6 @@
 import { projectList, addProject, findTask, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
 import { addTask } from "./Tasks";
+import { storage } from "./storage";
 import Swal from 'sweetalert2'
 
 const contentDiv = document.querySelector('#content');
@@ -81,7 +82,8 @@ export default class UI {
     }
 
     taskIcon.addEventListener('click',() => {
-      task.isDone = !task.isDone
+      task.isDone = !task.isDone;
+      storage.saveStorage(projectList);
       taskIcon.classList.toggle('fa-circle-check');
       taskIcon.classList.toggle('fa-circle');
       taskSpan.classList.toggle('crossed-words');

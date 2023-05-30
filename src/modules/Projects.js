@@ -1,4 +1,5 @@
 import { addTask } from "./Tasks";
+import { storage } from "./storage";
 export let projectList = []
 let currrentProject;
 
@@ -32,7 +33,8 @@ export function setProjectList() {
     localStorage.setItem('projectList', JSON.stringify(projectList));
   }
   else {
-    projectList = JSON.parse(localStorage.getItem('projectList'))};
+    projectList = JSON.parse(localStorage.getItem('projectList'))
+  };
   changeCurrentProject(0);
 }
 
@@ -40,7 +42,8 @@ export function findTask(project, taskName, shouldDelete) {
   for (let task of project.tasks) {
     if ( task.name == taskName){
       if(shouldDelete) {
-        return project.tasks.splice(project.tasks.indexOf(task), 1);
+        project.tasks.splice(project.tasks.indexOf(task), 1);
+        storage.saveStorage(projectList);
       }
       else return true;
     }
@@ -50,6 +53,7 @@ export function findTask(project, taskName, shouldDelete) {
 export function addProject(name, description, priority) {
   const newProject = new project(name, description, priority);
   projectList.push(newProject);
+  storage.saveStorage(projectList);
   return newProject;
 }
 
@@ -57,7 +61,8 @@ export function findProject(projectName, shouldDelete) {
   for (let project of projectList){
     if ( project.name == projectName){
       if(shouldDelete) {
-      return projectList.splice(projectList.indexOf(project), 1);
+        projectList.splice(projectList.indexOf(project), 1)
+        storage.saveStorage(projectList);
     }
     else return project;
   }}

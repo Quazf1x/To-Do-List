@@ -1,4 +1,5 @@
 import { getCurrentProject, projectList } from './Projects.js';
+import { storage } from './storage.js';
 
 export default class task {
   constructor(name, date, priority, isDone = false){
@@ -21,6 +22,6 @@ export default class task {
 export function addTask(name, date, priority, projectIndex) {
   const newTask = new task(name, date, priority);
   projectList[projectIndex].tasks.push(newTask);
-
+  storage.saveStorage(projectList);
   return newTask;
 };
