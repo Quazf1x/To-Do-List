@@ -3,6 +3,10 @@ import { addTask, isTaskToday } from "./Tasks";
 import { storage } from "./storage";
 
 import deleteIcon from '/src/img/Delete.svg';
+import homeIcon from '/src/img/Home.svg';
+import todayIcon from '/src/img/Today.svg';
+import projectsIcon from '/src/img/moreArrow.svg';
+
 import '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
 import '/node_modules/@fortawesome/fontawesome-free/css/regular.css';
 import Swal from 'sweetalert2';
@@ -12,8 +16,8 @@ const pageUL = document.querySelector('#content ul');
 const ulNavMenu = document.querySelector('#project-submenu');
 
 export default class UI {
-
   static loadPage() {
+    this.loadImages();
     this.addEventListeners();
     this.renderTasksPage();
     this.renderProjectsNav();
@@ -239,6 +243,16 @@ export default class UI {
 
     const newProject = addProject(projectName, projectDescription, projectPriority);
     return newProject;
+  }
+
+  static loadImages() {
+    const homeSectionIcon = document.querySelector('#home-page img');
+    const todaySectionIcon = document.querySelector('#today-page img');
+    const projectsSectionIcon = document.querySelector('#project-category img');
+
+    homeSectionIcon.src = homeIcon;
+    todaySectionIcon.src = todayIcon;
+    projectsSectionIcon.src = projectsIcon;
   }
 
   static addEventListeners(){
