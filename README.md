@@ -11,4 +11,4 @@ A simple tool to keep track of things you're planning to do.
 <img src="Readme images/Web.png"  alt="Web pic">
 <img src="Readme images/Web2.png" alt="Web pic 2">
 <h3> Mobile Version </h3>
-<img src="Readme images/Phone.png"  width = 20% height=20% atl="Phone pic">
+<img src="Readme images/Phone.png"  width = 30% height=30% atl="Phone pic">
