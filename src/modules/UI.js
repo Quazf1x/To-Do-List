@@ -1,4 +1,4 @@
-import { projectList, addProject, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
+import { projectList, addProject, findTask, findProject, getCurrentProject, changeCurrentProject } from "./Projects";
 import { addTask } from "./Tasks";
 import Swal from 'sweetalert2'
 
@@ -89,7 +89,7 @@ export default class UI {
 
      taskDeleteIcon.addEventListener('click', () => {
       //pageUL.removeChild(taskLI); - the old solution. thought that re-rendering from project tasks array each time would be better(?)
-      getCurrentProject().findTask(task.name, true);
+      findTask(getCurrentProject(),task.name, true);
       this.renderTasksPage();
      });
 
@@ -210,7 +210,7 @@ export default class UI {
   
   static getTaskDataFromUser() {
     const taskName = document.querySelector('#form-task-name').value;
-    if(getCurrentProject().findTask(taskName, false)) return null;
+    if(findTask(getCurrentProject(), taskName, false)) return null;
 
     const taskDate = document.querySelector('#form-task-date').value;
     const taskPriority = document.querySelector('#form-task-priorty').value;

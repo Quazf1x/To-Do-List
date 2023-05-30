@@ -2,42 +2,49 @@ import { addTask } from "./Tasks";
 export let projectList = []
 let currrentProject;
 
-export function createFirstProject() { //dummy function,remove later??
-  projectList.push(new project('Default Project', 'This is the default project.', 'Low'));
- // addTask('name','2004-03-04', 'Medium',0);
- // addTask('Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Long Name','2004-03-04', 'Low',0);
-  changeCurrentProject(0);
-};
+// export function createFirstProject() { //dummy function,remove later??
+//   if(window.localStorage.length === 0); {
+//     console.log(window.localStorage.length)
+//     projectList.push(new project('Default Project', 'This is the default project.', 'Low'));
+//   }
+//  // addTask('name','2004-03-04', 'Medium',0);
+//  // addTask('Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Very Long Name','2004-03-04', 'Low',0);
+//   changeCurrentProject(0);
+// };
 
 export default class project {
 
   constructor(name, description, priority){
-    this._name = name;
+    this.name = name;
    // this._date = date;
     this.description = description;
     this.priority = priority;
     this.tasks = [];
   }
+};
 
-  get name() {
-    return this._name;
+export function setProjectList() {
+  if(localStorage.getItem('projectList') == null) {
+    projectList.push(new project(
+      'Default Project',
+      'This is the default project.',
+      'Low'));
+    localStorage.setItem('projectList', JSON.stringify(projectList));
   }
+  else {
+    projectList = JSON.parse(localStorage.getItem('projectList'))};
+  changeCurrentProject(0);
+}
 
-  set name(value) {
-    this._name = value;
-  }
-
-  findTask( taskName, shouldDelete) {
-    for (let task of this.tasks){
-      if ( task.name == taskName){
-        if(shouldDelete) {
-          return this.tasks.splice(this.tasks.indexOf(task), 1);
-        }
-        else return true;
+export function findTask(project, taskName, shouldDelete) {
+  for (let task of project.tasks) {
+    if ( task.name == taskName){
+      if(shouldDelete) {
+        return project.tasks.splice(project.tasks.indexOf(task), 1);
       }
+      else return true;
     }
-  };
-
+  }
 };
 
 export function addProject(name, description, priority) {
